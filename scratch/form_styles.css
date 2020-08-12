@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+form .credential {
+  width: 50vw;
+  margin-bottom: 10px;
+}
+
+.btn {
+  justify-content: center;
+}
