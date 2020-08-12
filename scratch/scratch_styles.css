@@ -84,3 +84,9 @@ footer {
   font-family: 'Abel', sans-serif;
   border-top: 3px solid black;
 }
+
+.cocktail-img {
+  height: 100px;
+  border: 1px solid white;
+  border-radius: 30px;
+}

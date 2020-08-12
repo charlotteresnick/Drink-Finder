@@ -5,9 +5,10 @@
 
 form .credential {
   width: 50vw;
+  height: 5vh;
   margin-bottom: 10px;
 }
 
 .btn {
-  justify-content: center;
+  align-self: center;
 }

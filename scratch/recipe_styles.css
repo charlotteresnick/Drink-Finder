@@ -1,0 +1,38 @@
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 55vh;
+  width: 50vw;
+  text-align: center;
+  min-height: 400px;
+  max-width: 500px;
+  min-width: 200px;
+}
+
+.name {
+  display: flex;
+  align-self: center;
+  font-family: 'Lato', sans-serif;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredients ul {
+  font-family: 'Abel', sans-serif;
+  list-style-type: none;
+  color: #ef509f;
+}
+
+.instructions {
+  font-family: 'Abel', sans-serif;
+  justify-content: center;
+}
+
