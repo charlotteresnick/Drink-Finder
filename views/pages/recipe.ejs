@@ -1,0 +1,28 @@
+<div class='main-container'>
+  <div class="recipe-container">
+    <h1 class="name"><%- locals.cocktail.name %></h1>
+    <img class="cocktail-img" src="<%- locals.cocktail.image %> " alt="">
+    
+    <div class="info-container">
+      <div class="ingredients">
+        <ul>
+          <% locals.cocktail.ingredients.forEach(ingredient => { %>
+            <li><%- `${ingredient.measure} ${ingredient.name}` %> </li>
+          <% }) %>
+        </ul>
+      </div>
+      <div class="instructions">
+        <p><%- locals.cocktail.instructions %> </p>
+      </div>
+    </div>
+    <div class="add-dropdown">
+      <button id="dropdownTrigger" class="dropbtn">&#43</button>
+      <div id="dropdown" class="dropdown-content">
+        <a href="#">Summer Drinks</a>
+        <a href="#">The Classics</a>
+        <a href="#">Holiday Party</a>
+      </div>
+    </div>
+  </div>
+  <a class ="back-to-results-btn" href="/results">&#8592; Back to results</a>
+</div>
