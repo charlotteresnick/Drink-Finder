@@ -7,8 +7,8 @@ class SavedDrink {
     this.collection_id = collection_id;
   }
 
-  static getAll(drink_id) {
-    return db.query(`SELECT * FROM drink_save WHERE drink_id = $1`, drink_id)
+  static getAll(collection_id) {
+    return db.query(`SELECT * FROM drink_save WHERE collection_id = $1`, collection_id)
     .then((drinks) => drinks.map((drink) => new this(drink)));
   }
 
