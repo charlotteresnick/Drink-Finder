@@ -6,11 +6,14 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
 
+const authHelpers = require('./services/auth/auth-helpers');
+
 const cocktailFetcher = require('./lib/cocktailFetcher');
 const cf = new cocktailFetcher();
 
 const authRouter = require('./routes/auth-router');
 const userRouter = require('./routes/user-router');
+const collectionRouter = require('./routes/collection-router');
 
 const app = express();
 require('dotenv').config();
@@ -47,26 +50,6 @@ app.get('/', (req, res) => {
   res.render('layouts/full-page', locals);
 });
 
-app.get('/login', (req, res) => {
-  const locals = {
-    title: 'Login',
-    pageName: 'login',
-  };
-  res.render('layouts/full-page', locals);
-});
-
-app.get('/logout', (req, res) => {
-
-});
-
-app.get('/register', (req, res) => {
-  const locals = {
-    title: 'Register',
-    pageName: 'register',
-  };
-  res.render('layouts/full-page', locals);
-});
-
 app.get('/recipe/:id', (req, res) => {
   cf.getCocktailById(req.params.id).then((cocktail) => {
     if (!cocktail) {
@@ -82,7 +65,7 @@ app.get('/recipe/:id', (req, res) => {
   })
 });
 
-app.get('/search', (req, res) => {
+app.get('/search', authHelpers.loginRequired, (req, res) => {
   const locals = {
     title: 'Search',
     pageName: 'search',
@@ -103,24 +86,9 @@ app.get('/results', (req, res) => {
   })
 });
 
-app.get('/collection', (req, res) => {
-  const locals = {
-    title: 'Collection',
-    pageName: 'collection',
-  };
-  res.render('layouts/full-page', locals);
-});
-
-app.get('/collections', (req, res) => {
-  const locals = {
-    title: 'All Collections',
-    pageName: 'collections',
-  };
-  res.render('layouts/full-page', locals);
-});
-
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
+app.use('/collections', collectionRouter);
 
 app.use('*', (req, res) => {
   res.status(404).send('Not found');

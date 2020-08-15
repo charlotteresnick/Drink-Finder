@@ -1,0 +1,13 @@
+<div class="main-container">
+  <div class="single-collection-container">
+    <h1><%- locals.collection.name %> </h1>
+    <div class="saved-to-collection">
+      <% locals.cocktails.forEach(cocktail => { %>
+        <a class="saved-drink" href="recipe/<%- cocktail.id %> ">
+          <h3><%- `${cocktail.name}` %> </h3>
+          <img class="cocktail-img" src="<%- cocktail.image %> " alt="">
+        </a>
+        <% }) %>
+    </div>
+  </div>
+</div>

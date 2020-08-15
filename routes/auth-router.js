@@ -4,12 +4,17 @@ const passport = require('../services/auth/local');
 const authRouter = express.Router();
 
 authRouter.get('/login', authHelpers.loginRedirect, (req, res) => {
-  res.render('/login');
+  const locals = {
+    title: 'Login',
+    pageName: 'login',
+  };
+  res.render('layouts/full-page', locals);
 });
+
 authRouter.post(
   '/login',
   passport.authenticate('local', {
-    successRedirect: '/main',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true,
   })
@@ -18,6 +23,14 @@ authRouter.post(
 authRouter.get('/logout', (req, res) => {
   req.logout();
   res.redirect('back');
+});
+
+authRouter.get('/register', (req, res) => {
+  const locals = {
+    title: 'Register',
+    pageName: 'register',
+  };
+  res.render('layouts/full-page', locals);
 });
 
 module.exports = authRouter;

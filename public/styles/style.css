@@ -382,6 +382,36 @@ form .credential {
   ;
 }
 
+.create-new-collection-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.create-collection-input {
+  background-color: white;
+  width: 30vw;
+  height: 5vh;
+  margin-bottom: 15px;
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-size: 12pt;
+  border-radius: 20px;
+  border: 2px solid black;
+}
+
+.create-collection-submit {
+  background-color: white;
+  width: 10vw;
+  height: 5vh;
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-size: 12pt;
+  border-radius: 20px;
+  border: 2px solid black;
+}
+
 /* SINGLE COLLECTION STYLES */
 
 .saved-to-collection {
