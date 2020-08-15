@@ -1,36 +1,10 @@
 <div class="main-container">
   <div class="search-results">
-    <a class="cocktail" href="/recipe">
-      <h3>Margarita</h3>
-      <img class="cocktail-img" src="assets/margarita.jpg" alt="">
-    </a>
-    <a class="cocktail" href="/recipe">
-      <h3>Mojito</h3>
-      <img class="cocktail-img" src="assets/mojito.jpg" alt="">
-    </a>
-    <a class="cocktail" href="/recipe">
-      <h3>Paloma</h3>
-      <img class="cocktail-img" src="assets/paloma.jpg" alt="">
-    </a>
-    <a class="cocktail" href="/recipe">
-      <h3>Long Island Iced Tea</h3>
-      <img class="cocktail-img" src="assets/long-island-iced-tea.jpg" alt="">
-    </a>
-    <a class="cocktail" href="/recipe">
-      <h3>Gin & Tonic</h3>
-      <img class="cocktail-img" src="assets/gin-and-tonic.jpg" alt="">
-    </a>
-    <a class="cocktail" href="/recipe">
-      <h3>Mai Tai</h3>
-      <img class="cocktail-img" src="assets/maitai.jpg" alt="">
-    </a>
-    <a class="cocktail" href="/recipe">
-      <h3>Old Fashioned</h3>
-      <img class="cocktail-img" src="assets/old-fashioned.jpg" alt="">
-    </a>
-    <a class="cocktail" href="/recipe">
-      <h3>Manhattan</h3>
-      <img class="cocktail-img" src="assets/manhattan.jpg" alt="">
-    </a>
+    <% locals.cocktails.forEach(cocktail => { %>
+      <a class="cocktail" href="recipe/<%- cocktail.id %>">
+        <h3><%-`${cocktail.name}` %></h3>
+        <img class="cocktail-img" src="<%- cocktail.image %>" alt="cocktail image">
+      </a>
+    <% }) %>
   </div>
 </div>

@@ -231,6 +231,7 @@ form .credential {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  font-family: 'Abel', sans-serif;
 }
 
 /* Links inside the dropdown */
@@ -381,6 +382,7 @@ form .credential {
   width: 100vw;
   max-width: 1200px;
   max-height: 500px;
+  overflow: scroll;
 }
 .search-results>* {
   flex: 1 2 200px;

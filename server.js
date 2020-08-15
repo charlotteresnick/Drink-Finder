@@ -68,7 +68,7 @@ app.get('/register', (req, res) => {
 });
 
 app.get('/recipe/:id', (req, res) => {
-  cf.fetchCocktail(req.params.id).then((cocktail) => {
+  cf.getCocktailById(req.params.id).then((cocktail) => {
     if (!cocktail) {
       res.redirect('/')
     }
@@ -91,11 +91,16 @@ app.get('/search', (req, res) => {
 });
 
 app.get('/results', (req, res) => {
-  const locals = {
-    title: 'Results',
-    pageName: 'results',
-  };
-  res.render('layouts/full-page', locals);
+  const { s } = req.query;
+  cf.searchCocktailsByName(s).then(cocktails => {
+    console.log(cocktails)
+    const locals = {
+      title: 'Results',
+      pageName: 'results',
+      cocktails,
+    };
+    res.render('layouts/full-page', locals);
+  })
 });
 
 app.get('/collection', (req, res) => {
