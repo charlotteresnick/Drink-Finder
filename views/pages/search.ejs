@@ -1,23 +1,10 @@
 <div class="main-container">
   <div class="wrapper">
     <div class="search_box">
-      <div class="dropdown">
-        <div class="arrow"></div>
-        <div class="default_option">All</div>
-        <ul>
-          <li>Alcohol Type</li>
-          <li>Season</li>
-          <li>Ingredient</li>
-          <li>Cup Type</li>
-        </ul>
-      </div>
-      <div class="search_field">
-        <input type="text" class="input" placeholder="Search for cocktails">
-        <!-- <i class="fas fa-search"></i> -->
-      </div>
-      <div class="search-btn" >
-        <a class="button" href="/results">Search</a>
-      </div>
+        <form class="search-form" action="/results" method="GET">
+          <input class="input" type="text" name="s" placeholder="Search for cocktails">
+          <input class="search-btn" type="submit" />
+        </form>
     </div>
   </div>
 </div>
