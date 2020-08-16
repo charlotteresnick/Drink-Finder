@@ -13,10 +13,10 @@ CREATE TABLE IF NOT EXISTS collections (
   name VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS drink_save (
+CREATE TABLE IF NOT EXISTS saves (
   id SERIAL PRIMARY KEY,
   drink_id INTEGER,
   collection_id INTEGER
-    CONSTRAINT drink_save_to_collection
+    CONSTRAINT save
       REFERENCES collections
 )

@@ -14,6 +14,8 @@ const cf = new cocktailFetcher();
 const authRouter = require('./routes/auth-router');
 const userRouter = require('./routes/user-router');
 const collectionRouter = require('./routes/collection-router');
+const recipeRouter = require('./routes/recipe-router');
+const saveRouter = require('./routes/save-router');
 
 const app = express();
 require('dotenv').config();
@@ -43,28 +45,12 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
-  console.log(req.user)
   const locals = {
     title: 'Main',
     pageName: 'main',
     isLoggedIn: !!req.user,
   };
   res.render('layouts/full-page', locals);
-});
-
-app.get('/recipe/:id', (req, res) => {
-  cf.getCocktailById(req.params.id).then((cocktail) => {
-    if (!cocktail) {
-      res.redirect('/')
-    }
-    console.log(cocktail);
-    const locals = {
-      title: 'Recipe',
-      pageName: 'recipe',
-      cocktail,
-    };
-    res.render('layouts/full-page', locals);
-  })
 });
 
 app.get('/search', authHelpers.loginRequired, (req, res) => {
@@ -78,7 +64,6 @@ app.get('/search', authHelpers.loginRequired, (req, res) => {
 app.get('/results', (req, res) => {
   const { s } = req.query;
   cf.searchCocktailsByName(s).then(cocktails => {
-    console.log(cocktails)
     const locals = {
       title: 'Results',
       pageName: 'results',
@@ -91,6 +76,8 @@ app.get('/results', (req, res) => {
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/collections', collectionRouter);
+app.use('/recipe', recipeRouter);
+app.use('/save', saveRouter);
 
 app.use('*', (req, res) => {
   res.status(404).send('Not found');

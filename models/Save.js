@@ -1,21 +1,21 @@
 const db = require('../db/config');
 
-class SavedDrink {
-  constructor ({ id, drink_id, collection_id }) {
+class Save {
+  constructor ({ id, cocktailId, collectionId }) {
     this.id = id || null;
-    this.drink_id = drink_id;
-    this.collection_id = collection_id;
+    this.cocktailId = cocktailId;
+    this.collectionId = collectionId;
   }
 
-  static getAll(collection_id) {
-    return db.query(`SELECT * FROM drink_save WHERE collection_id = $1`, collection_id)
+  static getAll(collectionId) {
+    return db.query(`SELECT * FROM saves WHERE collection_id = $1`, collectionId)
     .then((drinks) => drinks.map((drink) => new this(drink)));
   }
 
   static getById(id) {
     return db
     .oneOrNone(`
-    SELECT * FROM drink_save
+    SELECT * FROM saves
     WHERE id = $1`, id)
     .then((drink) => {
       if (drink) return new this (drink)
@@ -26,27 +26,27 @@ class SavedDrink {
   save() {
     return db
     .one(`
-    INSERT INTO drink_save
+    INSERT INTO saves
     (collection_id, drink_id)
-    VALUES ($/collection_id/, $/drink_id/)
+    VALUES ($/collectionId/, $/cocktailId/)
     RETURNING *`, this)
-    .then((savedDrink) => Object.assign(this, savedDrink));
+    .then((save) => Object.assign(this, save));
   }
 
   update(changes) {
     Object.assign(this, changes);
     return db
     .one(`
-    UPDATE drink_save SET
-    collection_id = $/collection_id/
+    UPDATE saves SET
+    collection_id = $/collectionId/
     WHERE id = $/id/
     RETURNING *`, this)
     .then((updatedDrink) => Object.assign(this, updatedDrink));
   }
 
   delete() {
-    return db.none(`DELETE FROM drink_save WHERE id = $/id/`, this);
+    return db.none(`DELETE FROM saves WHERE id = $/id/`, this);
   }
 }
 
-module.exports = SavedDrink;
+module.exports = Save;

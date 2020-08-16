@@ -1,5 +1,5 @@
-const Collections = require('../models/Collections');
-const SavedDrink = require('../models/Drinks_Save');
+const Collections = require('../models/Collection');
+const Save = require('../models/Save');
 const cocktailFetcher = require('../lib/cocktailFetcher');
 const cf = new cocktailFetcher();
 
@@ -17,10 +17,9 @@ const CollectionsController ={
 
   show(req, res, next) {
     Collections.getById(req.params.id).then((collection) => {
-      SavedDrink.getAll(collection.id).then((drink_saves) => {
-        const cocktailsIds = drink_saves.map(drink_save => drink_save.drink_id);
+      Save.getAll(collection.id).then((saves) => {
+        const cocktailsIds = saves.map(save => save.drink_id);
         cf.getCocktailsByIds(cocktailsIds).then((cocktails) => {
-          console.log(cocktails)
           const locals = {
             title: 'Collection',
             pageName: 'single-collection',

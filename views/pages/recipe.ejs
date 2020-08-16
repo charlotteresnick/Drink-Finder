@@ -18,9 +18,13 @@
     <div class="add-dropdown">
       <button id="dropdownTrigger" class="dropbtn">&#43</button>
       <div id="dropdown" class="dropdown-content">
-        <a href="#">Summer Drinks</a>
-        <a href="#">The Classics</a>
-        <a href="#">Holiday Party</a>
+        <% locals.collections.filter((collection) => !collection.drink_exists).forEach(collection => { %>
+          <a href="/save?collectionId= <%- collection.id %>&cocktailId=<%- locals.cocktail.id %>"><%- collection.name %></a>
+        <% }) %>
+
+        <% if (locals.collections.filter((collection) => !collection.drink_exists).length === 0) { %>
+          <a href="#">No collections found</a>
+        <% } %>
       </div>
     </div>
   </div>

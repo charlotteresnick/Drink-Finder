@@ -1,10 +1,11 @@
 const db = require('../db/config');
 
 class Collection {
-  constructor({ id, user_id, name }) {
+  constructor({ id, user_id, name, drink_exists }) {
     this.id = id || null;
     this.user_id = user_id;
     this.name = name;
+    this.drink_exists = drink_exists
   }
 
   static getAll(user_id) {
@@ -21,6 +22,22 @@ class Collection {
       if (collection) return new this(collection)
       else throw new Error('No collection found')
     });
+  }
+
+  static getByUserIdAndDrinkId(user_id, drink_id) {
+    return db
+    .query(`
+    SELECT id, name, bool_or(drink_exists) as "drink_exists" FROM
+      (SELECT c.id, c.name,
+        CASE WHEN s.drink_id = $1
+          THEN TRUE
+          ELSE FALSE
+        END drink_exists
+      FROM collections c LEFT JOIN saves s on s.collection_id = c.id
+      WHERE c.user_id = $2) as saves
+    GROUP BY saves.id, saves.name;
+    `, [drink_id, user_id])
+    .then((collections) => collections.map((collection) => new this(collection)));
   }
 
   save() {
