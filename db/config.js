@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const options = {
   query: e => {
-    if (process.env.NODE_ENV === 'dev') {
+    if (process.env.NODE_ENV === 'development') {
       console.log(e.query);
     };
   },
@@ -10,8 +10,18 @@ const options = {
 
 const pgp = require('pg-promise')(options);
 
-module.exports = pgp({
-  database: process.env.DB_NAME,
-  port: 5432,
-  host: 'localhost',
-});
+function setDatabase() {
+  if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
+    return pgp({
+      database: process.env.DEV_DB,
+      port: 5432,
+      host: 'localhost',
+    });
+  } else if (process.env.NODE_ENV === 'production') {
+    return pgp(process.env.DATABASE_URL);
+  }
+}
+
+const db = setDatabase();
+
+module.exports = db;
