@@ -53,6 +53,14 @@ app.get('/', (req, res) => {
   res.render('layouts/full-page', locals);
 });
 
+app.get('/about', (req, res) => {
+  const locals = {
+    title: 'About',
+    pageName: 'about',
+  };
+  res.render('layouts/full-page', locals);
+});
+
 app.get('/search', authHelpers.loginRequired, (req, res) => {
   const locals = {
     title: 'Search',
@@ -80,7 +88,11 @@ app.use('/recipe', recipeRouter);
 app.use('/save', saveRouter);
 
 app.use('*', (req, res) => {
-  res.status(404).send('Not found');
+  const locals = {
+    title: '404 Not Found',
+    pageName: '404',
+  };
+  res.status(404).render('layouts/404-page', locals);
 });
 
 app.use((err, req, res, next) => {
@@ -90,22 +102,3 @@ app.use((err, req, res, next) => {
   });
 });
 
-// When the user clicks on the button,
-// toggle between hiding and showing the dropdown content
-// function myFunction() {
-//   document.getElementById("myDropdown").classList.toggle("show");
-// }
-
-// Close the dropdown menu if the user clicks outside of it
-// window.onclick = function(event) {
-//   if (!event.target.matches('.dropbtn')) {
-//     var dropdowns = document.getElementsByClassName("dropdown-content");
-//     var i;
-//     for (i = 0; i < dropdowns.length; i++) {
-//       var openDropdown = dropdowns[i];
-//       if (openDropdown.classList.contains('show')) {
-//         openDropdown.classList.remove('show');
-//       }
-//     }
-//   }
-// }

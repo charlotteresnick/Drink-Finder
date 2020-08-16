@@ -34,5 +34,17 @@ const SaveController ={
       })
     })
   },
+
+  delete(req, res, next) {
+    const { cocktailId, collectionId } = req.query;
+    Save.getByCollectionIdAndCocktailId(collectionId, cocktailId)
+    .then((save) => {
+      return save.delete();
+    })
+    .then(() => {
+      res.redirect(`/collections/${collectionId}`);
+    })
+    .catch((err) => next(err));
+  }
 }
 module.exports = SaveController

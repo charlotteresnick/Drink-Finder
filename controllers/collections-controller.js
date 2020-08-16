@@ -18,7 +18,7 @@ const CollectionsController ={
   show(req, res, next) {
     Collections.getById(req.params.id).then((collection) => {
       Save.getAll(collection.id).then((saves) => {
-        const cocktailsIds = saves.map(save => save.drink_id);
+        const cocktailsIds = saves.map(save => save.cocktailId);
         cf.getCocktailsByIds(cocktailsIds).then((cocktails) => {
           const locals = {
             title: 'Collection',
@@ -57,7 +57,8 @@ const CollectionsController ={
   },
 
   delete(req, res, next) {
-    Collections.getById(req.params.id)
+    console.log(req.query)
+    Collections.getById(req.query.collectionId)
     .then((collection) => {
       return collection.delete();
     })

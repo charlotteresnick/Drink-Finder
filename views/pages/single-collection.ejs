@@ -3,11 +3,23 @@
     <h1><%- locals.collection.name %> </h1>
     <div class="saved-to-collection">
       <% locals.cocktails.forEach(cocktail => { %>
-        <a class="saved-drink" href="recipe/<%- cocktail.id %> ">
-          <h3><%- `${cocktail.name}` %> </h3>
-          <img class="cocktail-img" src="<%- cocktail.image %> " alt="">
-        </a>
+        <div class="saved-drink">
+          <a href="/recipe/<%- cocktail.id %> ">
+            <h3><%- `${cocktail.name}` %> </h3>
+            <img class="cocktail-img" src="<%- cocktail.image %> " alt="">
+          </a>
+          <a class="delete-from-collection-btn" href='/save/delete?cocktailId=<%- cocktail.id %>&collectionId=<%- locals.collection.id %>'>X</a>
+        </div>
         <% }) %>
+        <% if (locals.cocktails.length === 0) { %>
+          <div class="empty-collection">
+            <img class="empty-glass" src="/assets/empty.gif" alt="">
+            <div class="empty-collection-msg">
+              <h2>Oh no! This Collection is empty. Go to 'Search' to add recipes to your collection.</h2>
+            </div>
+          </div>
+        <% } %>
     </div>
   </div>
+  <a class ="back-to-results-btn" href="javascript:history.back()">&#8592; Go Back</a>
 </div>

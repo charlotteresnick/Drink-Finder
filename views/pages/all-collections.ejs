@@ -3,10 +3,21 @@
     <h1>Your Collections</h1>
     <div class="collections-list">
       <% locals.collections.forEach(collection => { %>
-        <a class="collection" href="collections/<%- collection.id %>">
-          <h3 class="collection-name"><%- collection.name %> </h3>
-        </a>
+        <div class="collection">
+          <a href="collections/<%- collection.id %>">
+            <h3 class="collection-name"><%- collection.name %> </h3>
+          </a>
+          <a class="delete-collection-btn" href='collections/delete?collectionId=<%- collection.id %>'>X</a>
+        </div>
       <% }) %>
+      <% if (locals.collections.length === 0) { %>
+        <div class="no-collections">
+          <img class="empty-glass" src="/assets/empty.gif" alt="">
+          <div class="empty-collection-msg">
+            <h2>Oh no! You have no collections! Create a new collection and get searchin'.</h2>
+          </div>
+        </div>
+      <% } %>
     </div>
     <form class="create-new-collection-form" method="POST" action="/collections">
       <input class="create-collection-input" type="text" name="name" placeholder="Enter new collection name">

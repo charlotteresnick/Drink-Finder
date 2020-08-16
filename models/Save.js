@@ -9,7 +9,11 @@ class Save {
 
   static getAll(collectionId) {
     return db.query(`SELECT * FROM saves WHERE collection_id = $1`, collectionId)
-    .then((drinks) => drinks.map((drink) => new this(drink)));
+    .then((drinks) => drinks.map((drink) => new this({
+        id: drink.id,
+        cocktailId: drink.drink_id,
+        collectionId: drink.collection_id,
+      })));
   }
 
   static getById(id) {
@@ -18,7 +22,27 @@ class Save {
     SELECT * FROM saves
     WHERE id = $1`, id)
     .then((drink) => {
-      if (drink) return new this (drink)
+      if (drink) return new this ({
+        id: drink.id,
+        cocktailId: this.drink_id,
+        collectionId: this.collection_id,
+      })
+      else throw new Error('No drink found')
+    });
+  }
+
+
+  static getByCollectionIdAndCocktailId(collectionId, cocktailId) {
+    return db
+    .oneOrNone(`
+    SELECT * FROM saves
+    WHERE collection_id = $1 AND drink_id = $2`, [collectionId, cocktailId])
+    .then((drink) => {
+      if (drink) return new this ({
+        id: drink.id,
+        cocktailId: this.drink_id,
+        collectionId: this.collection_id,
+      })
       else throw new Error('No drink found')
     });
   }
