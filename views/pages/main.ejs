@@ -2,8 +2,11 @@
   <h1>Welcome to Drink Finder!</h1>
   <h2>Create and share collections of your favorite drinks from our recipes.</h2>
   <div class="main-btn-container">
-    <a href="/login">Login</a>
-    <a class="main-search-btn" href="/search">Search</a>
-    <a href="/register">Register</a>
+    <% if (locals.isLoggedIn) { %>
+      <a class="main-search-btn" href="/search">Search</a>
+    <% } else { %>
+      <a href="/auth/login">Login</a>
+      <a href="/auth/register">Register</a>
+    <% } %>
   </div>
 </div>

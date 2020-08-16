@@ -43,9 +43,11 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
+  console.log(req.user)
   const locals = {
     title: 'Main',
     pageName: 'main',
+    isLoggedIn: !!req.user,
   };
   res.render('layouts/full-page', locals);
 });
