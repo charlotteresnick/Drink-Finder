@@ -18,5 +18,5 @@ CREATE TABLE IF NOT EXISTS saves (
   drink_id INTEGER,
   collection_id INTEGER
     CONSTRAINT save
-      REFERENCES collections
+      REFERENCES collections ON DELETE CASCADE  
 )
