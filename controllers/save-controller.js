@@ -20,7 +20,7 @@ const SaveController ={
   show(req, res, next) {
     cf.getCocktailById(req.params.id).then((cocktail) => {
       if (!cocktail) {
-        res.redirect('/')
+        res.redirect('/404')
       }
       Collection.getByUserIdAndDrinkId(req.user.id, cocktail.id).then((collections) => {
         console.log(collections)

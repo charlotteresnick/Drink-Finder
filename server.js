@@ -71,7 +71,7 @@ app.get('/search', authHelpers.loginRequired, (req, res) => {
   res.render('layouts/full-page', locals);
 });
 
-app.get('/results', (req, res) => {
+app.get('/results', authHelpers.loginRequired, (req, res) => {
   const { s } = req.query;
   cf.searchCocktailsByName(s).then(cocktails => {
     const locals = {
