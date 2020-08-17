@@ -9,5 +9,13 @@
         <img class="cocktail-img" src="<%- cocktail.image %>" alt="cocktail image">
       </a>
     <% }) %>
+    <% if (locals.cocktails.length === 0) { %>
+      <div class="no-collections">
+        <img class="empty-glass" src="/assets/empty.gif" alt="">
+        <div class="empty-collection-msg">
+          <h2>Oh no! Your search returned a whole lot of nothin'. Try again!</h2>
+        </div>
+      </div>
+     <% } %>
   </div>
 </div>
