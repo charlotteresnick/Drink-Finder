@@ -8,6 +8,7 @@ authRouter.get('/login', authHelpers.loginRedirect, (req, res) => {
     title: 'Login',
     pageName: 'login',
     badLogin: !!req.query.badLogin,
+    isLoggedIn: !!req.user,
   };
   res.render('layouts/full-page', locals);
 });
@@ -30,7 +31,8 @@ authRouter.get('/register', (req, res) => {
   const locals = {
     title: 'Register',
     pageName: 'register',
-    badRegistration: !!req.query.badRegistration
+    badRegistration: !!req.query.badRegistration,
+    isLoggedIn: !!req.user
   };
   res.render('layouts/full-page', locals);
 });

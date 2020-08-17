@@ -9,7 +9,8 @@ const CollectionsController ={
       const locals = {
         title: 'All Collections',
         pageName: 'all-collections',
-        collections
+        collections,
+        isLoggedIn: !!req.user
       };
       res.render('layouts/full-page', locals);
     })
@@ -26,6 +27,7 @@ const CollectionsController ={
             id: req.params.id,
             collection,
             cocktails,
+            isLoggedIn: !!req.user
           };
           res.render('layouts/full-page', locals);
         });

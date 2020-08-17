@@ -57,6 +57,7 @@ app.get('/about', (req, res) => {
   const locals = {
     title: 'About',
     pageName: 'about',
+    isLoggedIn: !!req.user
   };
   res.render('layouts/full-page', locals);
 });
@@ -65,6 +66,7 @@ app.get('/search', authHelpers.loginRequired, (req, res) => {
   const locals = {
     title: 'Search',
     pageName: 'search',
+    isLoggedIn: !!req.user
   };
   res.render('layouts/full-page', locals);
 });
@@ -76,6 +78,7 @@ app.get('/results', (req, res) => {
       title: 'Results',
       pageName: 'results',
       cocktails,
+      isLoggedIn: !!req.user
     };
     res.render('layouts/full-page', locals);
   })
@@ -91,6 +94,7 @@ app.use('*', (req, res) => {
   const locals = {
     title: '404 Not Found',
     pageName: '404',
+    isLoggedIn: !!req.user
   };
   res.status(404).render('layouts/404-page', locals);
 });

@@ -28,7 +28,8 @@ const SaveController ={
           title: 'Recipe',
           pageName: 'recipe',
           cocktail,
-          collections
+          collections,
+          isLoggedIn: !!req.user
         };
         res.render('layouts/full-page', locals);
       })
