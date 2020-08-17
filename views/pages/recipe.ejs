@@ -7,7 +7,7 @@
       <div class="ingredients">
         <ul>
           <% locals.cocktail.ingredients.forEach(ingredient => { %>
-            <li><%- `${ingredient.measure} ${ingredient.name}` %> </li>
+            <li><%- `${ingredient.measure || ""} ${ingredient.name || ""}` %> </li>
           <% }) %>
         </ul>
       </div>
