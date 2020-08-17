@@ -15,7 +15,7 @@
 <a>--WIREFRAMES--</a>
 
 ### Schema diagram
-![Schema](schema.png)
+![Schema](images/schema.png)
 
 ### User Story
 
