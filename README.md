@@ -8,49 +8,42 @@
 
 ## Project Workflow
 
-**Here is a link to this complete repo**
-<a href="https://github.com/Schlaffmatthewj/Express-app">My-GitHub</a>
+**Complete repository link here:**
+<a href="https://github.com/charlotteresnick/Cocktail-Search">Drink Finder</a>
 
 ### Wire Frames
-<a href=https://imgur.com/f2RuPYQ>--WIREFRAMES--</a>
+<a>--WIREFRAMES--</a>
 
 ### Schema diagram
-<a href=https://imgur.com/a/mDWVMIm>--SCHEMA--</a>
+<a >--SCHEMA--</a>
 
 ### User Story
 
-- You can create a profile with your name, email, password and an username. 
-- You can edit your user's information and delete your user's account. 
-- There is a search page with preloaded cities and a button that allows you to search for more.
-- When on a city's page you will be able to save shortcuts to cities on your profile page.
-- City pages will get various popular data from Zomato's API on city cuisine and nearby locations.
-- The restaurants also have links to their own content and from their page you can save that shortcut also.
-- Restaurant pages show their times, address, menu links and links to even more information.
-- You may also remove any city or restaurant from your profile page.
+- Login or register using your email, password and username. 
+- Search for recipes from external API, create collections to add recipes to.
+- When viewing a recipe, add to any collection using dropdown menu.
+- View collections, edit recipes within and delete collections.
 
 ### HTTP Routes
 
-- GET '/', homepage
-- GET '/auth'
-    - GET '/login', sign into account
-    - GET '/logout', signout of account
-- GET '/city/:id', shows a single city's info
-    - POST '/', adds city to global search page
-- GET '/restaurant/:id', shows a single restaurant's info
-    - POST '/', adds restaurant's info to the database
-- GET '/user', index shows all shortcuts for a user
-    - GET '/new', create new account
-    - POST '/', adds new user to database
-    - PUT '/:id', change name and email
-    - GET '/:id/edit', shows form to change user info
-    - DELETE '/:id', this user completely
-    - POST '/city/:id', saves shortcut to city on profile
-    - DELETE '/city/:id', this city from user profile (join table)
-    - POST '/rest/:id', shows shortcut to restaurants on profile
-    - DELETE 'rest/:id', this restaurant from user profile (join table)
-- GET '/search', shows all of the globally listed cities
-    - GET '/new', form for new city query
-- GET '/about', this is a walkthrough of the app of web users
+- GET '/', main page with dynamic login, register and search buttons
+
+- GET '/auth/login', sign into existing account, takes user to full page 
+- POST '/auth/login', handles authentication on login
+- GET '/auth/register', handles authentication when user registers to create a new account
+- GET '/auth/logout', handles authentication on logout
+
+- GET '/collections/', shows full index of collections
+- GET '/collections/delete', deletes a collection
+- GET '/collections/:id', shows a single collection and the recipe thumbnails belonging to it
+- POST '/collections/', creates a new collection
+
+- GET '/recipe/:id', shows individual recipe
+
+- GET '/save/', saves a drink recipe to a collection
+- GET 'save/delete', deletes a recipe from a collection
+
+- POST '/user', creates a new user 
     
 
 ## Specs
@@ -59,15 +52,12 @@
     - Postgres-SQL
     - Node.js
     - Express
-    <!-- MORE -->
+    - ejs
 
 - API
-    - Zomato's API
-        - Found city coordinates from simple text query
-        - Then I used the coordinates to get a much more detailed pack of info from Zomato
-        - Then used the specifics to find and get restaurants to show their information
-    - Pexel's API
-        - Takes requested city from search and retrieves first photo for the city's page
+    - The Cocktail DB
+        - Housed recipes and images for recipes in English and German
+        - I formatted recipes found via user search to dynamically render in user collections 
 
 - Modules
     - bcyrptjs
@@ -87,32 +77,30 @@
 
 ## My Favorite Bit From This Project
 
-- Sneaking bits of info into the url as an 'id' but they were used for the next query for the API request as their params.
-- Nesting user's restaurants inside of user cities where they belong too.
-- Adding Error show pages
+- Writing the SQL query for making the add to collections dropdown dynamic. What a trip.
+- Dynamically populating collections from a recipe search
+- Scrolling when handling overflow in styling...it was my first time using and I thought it was neat, especially for how easy it was to implement.
 
 ## Fix or Add
 
-- 'Find Me' locator, or be able to order and list the cities by states.
-- More styling and more main.js
+- Ability to create a collection in the add to collection dropdown on a recipe
+- A local cache for recipes queried and saved to collections by users so the app's not constantly making requests to the API when a user searches because the API was messy to sort through
+- More search filters
 
 ## Start-up Walk-through
 
-
 - Github
-    - First fork your own version on Github
-    - Get link for clone from green link on your forked copy of repo
-    - In your terminal create a new directory without an existing Github repo
-    - "git clone" 'this copied link from Github'
-    - "cd" into this directory/repo
+    - Fork version to personal Github account
+    - Get link for the cloned repo from green clipboard button on forked copy of repo
+    - Create a new directory without an existing Github repo in terminal
+    - Clone the copied link from Github
+    - Change directory to the newly created repository
 - PSQL
-    - Enter "psql" from the CML and "CREATE DATABASE" with the exact name from the .env file
-    - "\c '.env_DB_NAME'" to get inside of the database
-    - "\i db/migrations/ (all five migrations)" to create the data tables for the database
+    - Enter "psql" command in the commandline and create a databse of the exact name from my .env file 
+    - connect to the database (\c '.env_DB_NAME')
+    - create tables for the database (\i db/migrations/ (migration file))
 - NPM
-    -Once inside this root directory/cloned repo, run "npm install" in your CML
-    - This install all need modules to be able to run this application
-    - Enter "npm run dev" to start the server
+    -Once inside the root directory of the cloned repo, run the command "npm install" in the commandline; this will install all modules needed to run the app
+    - Start the server by entering "npm run dev" into the command line
 - Web Browser
-    - In your browser URL enter in "localhost:3000"
-    - ENJOY!
+    - Enter "localhost:3000" in browser to view app
