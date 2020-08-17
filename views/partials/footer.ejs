@@ -1,6 +1,8 @@
 <footer>
   <div class="footer-container">
-    <a class="logout" href="/auth/logout">Log Out</a>
+    <% if (locals.isLoggedIn) { %>
+      <a class="logout" href="/auth/logout">Log Out</a>
+    <% } %>
     <p>Site created with &#9829; by Charlotte Resnick</p>
   </div>
 </footer>
