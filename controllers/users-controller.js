@@ -17,7 +17,9 @@ const usersController = {
           res.redirect('/');
         });
       })
-      .catch(next);
+      .catch(() => {
+        res.redirect('/auth/register?badRegistration=true');
+      });
   },
 };
 

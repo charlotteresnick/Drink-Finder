@@ -1,5 +1,8 @@
 <div class="main-container">
   <h1>Register</h1>
+  <% if (locals.badRegistration) { %>
+   <h3>User account already exists, go to <a href="/auth/login">login</a></h3>
+  <% } %>
   <form class="form" method='POST' action='/user'>
     <input class="credential" name='username' type='text' placeholder='username' required />
     <input class="credential" name='email' type='email' placeholder='email' required />

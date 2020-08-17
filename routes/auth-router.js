@@ -7,6 +7,7 @@ authRouter.get('/login', authHelpers.loginRedirect, (req, res) => {
   const locals = {
     title: 'Login',
     pageName: 'login',
+    badLogin: !!req.query.badLogin,
   };
   res.render('layouts/full-page', locals);
 });
@@ -15,7 +16,7 @@ authRouter.post(
   '/login',
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/login',
+    failureRedirect: '/auth/login?badLogin=true',
     failureFlash: true,
   })
 );
@@ -29,6 +30,7 @@ authRouter.get('/register', (req, res) => {
   const locals = {
     title: 'Register',
     pageName: 'register',
+    badRegistration: !!req.query.badRegistration
   };
   res.render('layouts/full-page', locals);
 });

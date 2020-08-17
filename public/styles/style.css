@@ -46,6 +46,10 @@ header {
   font-family: 'Abel', sans-serif;
 }
 
+.main-container h3 {
+  font-family: 'Abel', sans-serif;
+}
+
 .main-btn-container {
   display: flex;
   justify-content: center;
