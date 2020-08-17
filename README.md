@@ -12,7 +12,10 @@
 <a href="https://github.com/charlotteresnick/Cocktail-Search">Drink Finder</a>
 
 ### Wire Frames
-<a>--WIREFRAMES--</a>
+![Prelim_wireframes](images/wireframe1.jpeg)
+![Final_wireframe_1](images/finalized_wireframe_1.jpeg)
+![Final_wireframe_2](images/finalized_wireframe_2.jpeg)
+![Add_to_collection_dropdown](images/add-to-collection-dropwdown.jpeg)
 
 ### Schema diagram
 ![Schema](images/schema.png)
